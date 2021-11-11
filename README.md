@@ -12,6 +12,7 @@ In "rules_file"
 
 Then, run the grib_filter to split the data file
 > grib_filter rules_file SingleLevel_20210101.grib 
+
 where SingleLevel_20210101.grib is the downloaded file
 
 ## Data preparation
