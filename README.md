@@ -7,14 +7,14 @@ Now we have a long queue to download the meteo data from ECMWF. The precessing t
 Install the grib api tools
 > sudo apt-get install libgrib-api-tools
 
-In "rules_file"
+## Data preparation
+* Meteorological data: the adjoint model should run backward in time. Considering the measurements duration, we decided to prepare the meteorological data covering whole January until Feb. 12, 2021. 
+
+To split the file, in "rules_file"
 > write "[centre]_[date].grib";
 
 Then, run the grib_filter to split the data file
 > grib_filter rules_file SingleLevel_20210101.grib 
 
 where SingleLevel_20210101.grib is the downloaded file
-
-## Data preparation
-* Meteorological data: the adjoint model should run backward in time. Considering the measurements duration, we decided to prepare the meteorological data covering whole January until Feb. 12, 2021.  
 
