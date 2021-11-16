@@ -1,0 +1,41 @@
+function [configs] = readConfigs(config)
+% 2021.11.14, Xiaole Zhang
+%   read configurations of the calculation
+fid = fopen(config, 'w');
+
+while ~feof(fid)
+    tline = fgetl(fid);
+    
+    % exclude comments
+    tline = regexp(tline, '#', 'split');
+    if(isempty(tline{1}))
+        continue
+    end
+    tline = tline{1};
+    
+    items = regexp(tline, '=|:|\s+', 'split');
+    
+    if(mod(length(items),2)~=0)
+    end
+        
+end
+
+for lineN = 1:5
+    strtmp = fgetl(fid);
+    if(lineN>1)
+        vars = regexp(strtmp, '\s+|\t', 'split' );
+        strtmp = [];
+        for varsN = 1:13
+            if(varsN>=5)
+                vars{varsN} = num2str(str2double(vars{varsN})*emissionFactor);
+            end
+            strtmp = [strtmp vars{varsN} '\t'];
+        end
+        
+    end
+    fprintf(fod, [strtmp '\n']);
+end
+fclose(fid);
+fclose(fod);
+end
+
