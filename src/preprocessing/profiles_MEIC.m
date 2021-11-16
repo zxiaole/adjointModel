@@ -1,7 +1,7 @@
 %% Nov. 10, 2021
 % process the MEIC data for adjoint model
 clear
-% close all
+close all
 
 %% common parameters
 year = 2017;
