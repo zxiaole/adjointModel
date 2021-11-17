@@ -19,20 +19,20 @@ pollutant = 'PM25';
 r = 6371229; % meter
 
 % configurations for Polair3d
-configFile = '../../config/caseConfig.cfg';
+configFile = '../../forwardRun/config/caseConfig.cfg';
 
 % mix emission inventory
-mixFolder = '../../rawData/emission/MIX/PM2.5/';
+mixFolder = '../../forwardRun/rawData/emission/MIX/PM2.5/';
 mixFileName = 'MICS_Asia_PM2.5_2010_0.25x0.25.nc';
 
 % MEIC emission inventory
-meicFolder = ['../../rawData/emission/MEIC_' num2str(year)];
+meicFolder = ['../../forwardRun/rawData/emission/MEIC_' num2str(year)];
 
 % BTH emission inventory
-bthFolder = ['../../rawData/emission/BTH_' num2str(year)];
+bthFolder = ['../../forwardRun/rawData/emission/BTH_' num2str(year)];
 
 % emission data folder
-output = '../../data/emissions';
+output = '../../forwardRun/data/emissions';
 currentMonth = 0;
 
 %% get configurations
