@@ -1,0 +1,26 @@
+# Beijing; Shijiazhuang; Langfang; Xi'an; Wuhan; Chongqing
+[source]
+# Xian
+Abscissa: 108.89 # degrees
+Ordinate: 34.24 # degrees
+Altitude: 3. # meters
+
+Species: XA
+
+Type: continuous
+# Rate per second, calculate so the total release is about  1 microg/m2/s.
+Rate: 3.8288e+08
+Date_beg: 2015-02-09_00h00
+Date_end: 2015-02-19_00h00
+
+# Source velocity (m/s)
+Velocity = 0.
+# Source temperature (Celsius degrees)
+Temperature = 0.
+# Source diameter (m)
+Diameter = 0.
+
+IsVolumeSource: no
+Source_water: 0.0
+
+Source: 1
