@@ -35,3 +35,4 @@ https://confluence.ecmwf.int/pages/viewpage.action?pageId=155337784
 > scons meteo_parallel openmp=yes flag_openmp=mp
 
 * [polair3dAdjoint.cpp](src/modifiedPolyphemus/polair3dAjoint/polair3dAdjoint.cpp): modified code for adjoint run, and it should be put in the 'processing/photochemistry' folder of the original Polyphemus codes.
+* [included files](src/modifiedPolyphemus/polair3dAjoint/includeModels/)
