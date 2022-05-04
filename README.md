@@ -33,3 +33,5 @@ where SingleLevel_20210101.grib is the downloaded file
 * [meteo.cpp](src/modifiedPolyphemus/meteo.cpp): The original meteo.cpp in Polyphemus has been modified in order to use ERA5 data, which only 1 hour accumulation
 https://confluence.ecmwf.int/pages/viewpage.action?pageId=155337784 
 > scons meteo_parallel openmp=yes flag_openmp=mp
+
+* [polair3dAdjoint.cpp](src/modifiedPolyphemus/polair3dAjoint/polair3dAdjoint.cpp): modified code for adjoint run, and it should be put in the 'processing/photochemistry' folder of the original Polyphemus codes.
