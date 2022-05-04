@@ -28,6 +28,7 @@ where SingleLevel_20210101.grib is the downloaded file
 
 ## Run adjoint model
 * [adjointFullRun.m](src/preprocessing/adjoint/adjointFullRun.m): generate the meteorological data for the adjoint model, and run the adjoint model based on the time period of the [measurement data](forwardRun/rawData/measurements/Xian.csv)
+* [utils](src/utils/): common tools required by adjoint and other models.
 
 ## Polyphemus modifications
 * [meteo.cpp](src/modifiedPolyphemus/meteo.cpp): The original meteo.cpp in Polyphemus has been modified in order to use ERA5 data, which only 1 hour accumulation
