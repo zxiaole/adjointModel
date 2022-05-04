@@ -31,7 +31,7 @@ where SingleLevel_20210101.grib is the downloaded file
 
 ## Run forward model
 * [preProcessing.py](forwardRun/preProcessing.py): prepare the input data for the forward run.
-* [configs](forwardRun/configs): all the configurations files for the forward run.
+* [configs](forwardRun/config): all the configurations files for the forward run.
 * [changeConfigLog](forwardRun/changeConfigLog): the items that might be changed in the configs for new cases.
 
 ## Run adjoint model
