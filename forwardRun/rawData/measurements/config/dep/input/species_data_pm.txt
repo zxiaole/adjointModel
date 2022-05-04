@@ -1,0 +1,13 @@
+PM2_5
+0.0000025
+1000
+
+# Legend:
+#
+# Species name, molecular weight, Henry constant (Effective), diffusivity,
+# reactivity, alpha, beta, Rm.
+#
+# With "zhang.cfg" as the LUC configuration file, diffusivity, alpha, beta,
+# and Rm are used.
+# With "wesely.cfg" as the LUC configuration file, Henry constant and
+# reactivity are used.
