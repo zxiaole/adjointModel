@@ -20,6 +20,7 @@ where SingleLevel_20210101.grib is the downloaded file
 
 [Xygrib](https://opengribs.org/en/) can be used to overview the generated data files, and check the file information, including area and numbers of grid points.
 
+* [fetchEcmwfData.ipynb](forwardRun/rawData/meteo/fetchEcmwfData.ipynb): download raw meteo data from the ERA5 reanalysis product database of ECMWF
 * [preProcessing.py](forwardRun/preProcessing.py): generate the model-ready ground data and meteorological data for Polair3d model.
 
 ## Map data
