@@ -20,7 +20,7 @@ where SingleLevel_20210101.grib is the downloaded file
 
 [Xygrib](https://opengribs.org/en/) can be used to overview the generated data files, and check the file information, including area and numbers of grid points.
 
-* [preProcessing.py](preProcessing.py): generate the model-ready ground data and meteorological data for Polair3d model.
+* [preProcessing.py](forwardRun/preProcessing.py): generate the model-ready ground data and meteorological data for Polair3d model.
 
 ## Map data
 * [Shapefiles](forwardRun/rawData/map/mapLink): the shapefiles should be downloaded and extracted into the map folder.
