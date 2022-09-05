@@ -1,5 +1,5 @@
 // Copyright (C) 2003-2007, ENPC - INRIA - EDF R&D
-// Author(s): Vivien Mallet and Hervé Njomgang
+// Author(s): Vivien Mallet and HervÃ© Njomgang
 //
 // This file is part of the air quality modeling system Polyphemus.
 //
@@ -44,7 +44,7 @@ using namespace Polyphemus;
 
 int main(int argc, char **argv)
 {
-  
+
   TRY;
 
   cout << endl;
@@ -52,7 +52,7 @@ int main(int argc, char **argv)
   string configuration_file, sec_config_file, default_name("");
 
   parse_argument(argc, argv, configuration_file, sec_config_file,
-		 default_name);
+                 default_name);
 
   ////////////////////////
   // FIRST DECLARATIONS //
@@ -80,6 +80,9 @@ int main(int argc, char **argv)
   // Number of LUC categories.
   int Nc;
 
+  // Starting index of LUCs.
+  int shift;
+
   // Output dimensions.
   int Nx_out, Ny_out;
   real Delta_x_out, Delta_y_out, x_min_out, y_min_out;
@@ -89,8 +92,9 @@ int main(int argc, char **argv)
   // CONFIGURATION FILES //
   /////////////////////////
 
-  cout << "Reading configuration files..."; cout.flush();
- 
+  cout << "Reading configuration files...";
+  cout.flush();
+
   ConfigStreams config(configuration_file);
   if (exists(sec_config_file))
     config.AddFile(sec_config_file);
@@ -110,6 +114,7 @@ int main(int argc, char **argv)
   config.PeekValue("Nx", "> 0", Nx_in_LUC);
   config.PeekValue("Ny", "> 0", Ny_in_LUC);
   config.PeekValue("Nc", "> 0", Nc);
+  config.PeekValue("Shift", shift);
 
   config.SetSection("[domain]");
 
@@ -118,9 +123,6 @@ int main(int argc, char **argv)
   config.PeekValue("Delta_x", "> 0", Delta_x_out);
   config.PeekValue("Delta_y", "> 0", Delta_y_out);
   config.PeekValue("x_min", x_min_out);
-  if(x_min_out>180)
-      x_min_out = x_min_out -360;
-
   config.PeekValue("y_min", y_min_out);
 
   cout << " done." << endl;
@@ -130,7 +132,8 @@ int main(int argc, char **argv)
   // ALLOCATIONS //
   /////////////////
 
-  cout << "Memory allocation for data fields..."; cout.flush();
+  cout << "Memory allocation for data fields...";
+  cout.flush();
 
   // Input settings.
 
@@ -154,13 +157,15 @@ int main(int argc, char **argv)
   // LUC //
   /////////
 
-  cout << "Reading LUC data..."; cout.flush();
+  cout << "Reading LUC data...";
+  cout.flush();
   FormatBinary<unsigned char> FormatIn;
   FormatIn.Read(dir_in + "/" + file_in, LUC_in);
   cout << " done." << endl;
 
 
-  cout << "Building LUC data on output grid..."; cout.flush();
+  cout << "Building LUC data on output grid...";
+  cout.flush();
 
   LUC_out.SetZero();
 
@@ -169,45 +174,37 @@ int main(int argc, char **argv)
   for (j = 0 ; j < Ny_out ; j++)
     for (i = 0 ; i < Nx_out ; i++)
       {
-	// limits of the output cell for the input data
-	pxl_min = int((x_min_out + (i - 0.5) * Delta_x_out
-		       - lon_origin - 0.5 * step)
-		      / step);
-	pxl_max = int((x_min_out + (i + 0.5) * Delta_x_out
-		       - lon_origin - 0.5 * step)
-		      / step);
-	line_min = int((- y_min_out - (j + 0.5) * Delta_y_out
-			+ lat_origin - 0.5 * step)
-		       / step);
-	line_max = int((- y_min_out - (j - 0.5)	* Delta_y_out
-			+ lat_origin - 0.5 * step)
-		       / step);
+        // limits of the output cell for the input data
+        pxl_min = int((x_min_out + (i - 0.5) * Delta_x_out
+                       - lon_origin - 0.5 * step)
+                      / step);
+        pxl_max = int((x_min_out + (i + 0.5) * Delta_x_out
+                       - lon_origin - 0.5 * step)
+                      / step);
+        line_min = int((- y_min_out - (j + 0.5) * Delta_y_out
+                        + lat_origin - 0.5 * step)
+                       / step);
+        line_max = int((- y_min_out - (j - 0.5) * Delta_y_out
+                        + lat_origin - 0.5 * step)
+                       / step);
 
-	NbCells = (line_max - line_min) * (pxl_max - pxl_min);
+        NbCells = (line_max - line_min) * (pxl_max - pxl_min);
 
-//	if (pxl_max >= Nx_in_LUC || pxl_min < 0
-//	    || line_max >= Ny_in_LUC || line_min < 0)
-//	  {
-//	    cout << endl;
-//	    cout << "(" << i << ", " << j << "): ";
-//	    cout << "This cell exceeds the limits of the input file." << endl;
-//	    return 1;
-//	  }
-    int id_tmp;
+        if (pxl_max >= Nx_in_LUC || pxl_min < 0
+            || line_max >= Ny_in_LUC || line_min < 0)
+          {
+            cout << endl;
+            cout << "(" << i << ", " << j << "): ";
+            cout << "This cell exceeds the limits of the input file." << endl;
+            return 1;
+          }
 
-	for (l = line_min ; l < line_max ; l++)
-	  for (k = pxl_min ; k < pxl_max ; k++)
-      {
-          if(k>=Nx_in_LUC)
-              id_tmp = k -Nx_in_LUC;
-          else
-              id_tmp = k;
-          LUC_out(int(LUC_in(l, id_tmp)), j, i)++;
-      }
+        for (l = line_min ; l < line_max ; l++)
+          for (k = pxl_min ; k < pxl_max ; k++)
+            LUC_out(int(LUC_in(l, k) - shift), j, i)++;
 
-
-	for (c = 0 ; c < Nc ; c++)
-	  LUC_out(c, j, i) /= real(NbCells);
+        for (c = 0 ; c < Nc ; c++)
+          LUC_out(c, j, i) /= real(NbCells);
       }
 
   cout << " done." << endl;
@@ -218,7 +215,8 @@ int main(int argc, char **argv)
   // WRITING OUTPUT //
   ////////////////////
 
-  cout << "Writing output data..."; cout.flush();
+  cout << "Writing output data...";
+  cout.flush();
 
   FormatBinary<float> PolairFormat;
   PolairFormat.Write(LUC_out, dir_out + "/" + file_out);
