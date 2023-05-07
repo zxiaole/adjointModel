@@ -1,1 +1,1 @@
-write "Xian/[centre]_[date].grib";
+write "Beijing/[centre]_[dataType]_[date]_[hour].grib";
