@@ -1,0 +1,1 @@
+ scons meteo_parallel openmp=yes flag_openmp=mp
