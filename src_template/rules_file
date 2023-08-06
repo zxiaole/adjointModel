@@ -1,0 +1,1 @@
+write "City_temp/[centre]_[dataType]_[date]_[hour].grib";

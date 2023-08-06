@@ -1,0 +1,9 @@
+1. caseConfig.cfg: Date_min; Nt; x_min; y_min; Nx; Ny
+
+2. case-data.cfg: [meteo] Date_min; [surface_emission] Date_min; [deposition] Date_min
+
+3. general.cfg: Date; x_min; y_min; Nx; Ny
+
+4. meteo.cfg: [ECMWF] Date; [paths] Database_meteo; domain
+
+5. source.dat [source] coordinates; Species
